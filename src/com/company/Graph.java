@@ -1,4 +1,4 @@
-package com.company.dfs;
+package com.company;
 
 import java.util.ArrayList;
 import java.util.HashMap;

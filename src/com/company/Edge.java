@@ -1,4 +1,4 @@
-package com.company.dfs;
+package com.company;
 
 public class Edge<T> {
     private T from;

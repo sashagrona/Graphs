@@ -1,7 +1,7 @@
 package com.company;
 
+import com.company.bfs.BreadthFirstSearch;
 import com.company.dfs.DepthFirstSearch;
-import com.company.dfs.Graph;
 
 public class Main {
 
@@ -21,7 +21,7 @@ public class Main {
         graph.addEdge(3, 5, 4);
         graph.addEdge(5, 6, 9);
         graph.addEdge(6, 7, 3);
-        DepthFirstSearch<Integer> dfs = new DepthFirstSearch<>(0, graph);
+        BreadthFirstSearch<Integer> dfs = new BreadthFirstSearch<>(0, graph);
         System.out.println(dfs.getCount());
     }
 }

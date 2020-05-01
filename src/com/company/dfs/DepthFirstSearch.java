@@ -1,5 +1,8 @@
 package com.company.dfs;
 
+import com.company.Edge;
+import com.company.Graph;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
