@@ -46,6 +46,17 @@ public class GridGraph<T> {
         return cells;
     }
 
+    public Cell getSellByUniqueValue(T t){
+        for (Map.Entry<Cell, T> entry: cellsValueMap.entrySet()) {
+            if (entry.getValue().equals(t)){
+                return entry.getKey();
+            }
+        }
+        return null;
+    }
+    public T getValueFromCell(Cell cell){
+        return cellsValueMap.get(cell);
+    }
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
