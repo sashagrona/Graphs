@@ -1,4 +1,4 @@
-package com.company;
+package com.company.graph.edge;
 
 public class Edge<T> {
     private T from;

@@ -1,4 +1,4 @@
-package com.company;
+package com.company.graph.edge;
 
 import java.util.ArrayList;
 import java.util.HashMap;

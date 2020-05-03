@@ -1,27 +1,20 @@
 package com.company;
 
-import com.company.bfs.BreadthFirstSearch;
-import com.company.dfs.DepthFirstSearch;
+import com.company.graph.grid.GridGraph;
+import com.company.graph.grid.Node;
 
 public class Main {
 
     public static void main(String[] args) {
-        Graph<Integer> graph = new Graph<>();
-        graph.addEdge(0, 1,5);
-        graph.addEdge(0, 9, 6);
-        graph.addEdge(1, 8, 6);
-        graph.addEdge(9, 8, -3);
-        graph.addEdge(8, 7, 11);
-        graph.addEdge(7, 10, 1);
-        graph.addEdge(10, 11, 6);
-        graph.addEdge(11, 7, 7);
-        graph.addEdge(7, 3, -5);
-        graph.addEdge(3, 4, 12);
-        graph.addEdge(3, 2, 24);
-        graph.addEdge(3, 5, 4);
-        graph.addEdge(5, 6, 9);
-        graph.addEdge(6, 7, 3);
-        BreadthFirstSearch<Integer> dfs = new BreadthFirstSearch<>(0, graph);
-        System.out.println(dfs.getCount());
+        GridGraph gridGraph = new GridGraph(5);
+        gridGraph.initGraph();
+        gridGraph.addNode(new Node(1,1,"S"));
+        gridGraph.addNode(new Node(3,4,"E"));
+        gridGraph.addNode(new Node(3,0,"#"));
+        gridGraph.addNode(new Node(0,3,"#"));
+        gridGraph.addNode(new Node(2,2,"#"));
+        gridGraph.addNode(new Node(3,2,"#"));
+        gridGraph.addNode(new Node(2,4,"#"));
+        System.out.println(gridGraph.toString());
     }
 }
