@@ -35,28 +35,30 @@ public class GridGraph<T> {
         List<Cell> cells = graph.get(cell);
         if (cells == null) {
             cells = new ArrayList<>();
-            for (int i = 0; i<4;i++){
+            for (int i = 0; i < 4; i++) {
                 int x = cell.getX() + rowsDirections[i];
                 int y = cell.getY() + columnDirections[i];
-                if ((x>=0&&x<size)&&(y>=0&&y<size)){
-                    cells.add(new Cell(x,y));
+                if ((x >= 0 && x < size) && (y >= 0 && y < size)) {
+                    cells.add(new Cell(x, y));
                 }
             }
         }
         return cells;
     }
 
-    public Cell getSellByUniqueValue(T t){
-        for (Map.Entry<Cell, T> entry: cellsValueMap.entrySet()) {
-            if (entry.getValue().equals(t)){
+    public Cell getSellByUniqueValue(T t) {
+        for (Map.Entry<Cell, T> entry : cellsValueMap.entrySet()) {
+            if (entry.getValue().equals(t)) {
                 return entry.getKey();
             }
         }
         return null;
     }
-    public T getValueFromCell(Cell cell){
+
+    public T getValueFromCell(Cell cell) {
         return cellsValueMap.get(cell);
     }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

@@ -17,7 +17,6 @@ public class Main {
         gridGraph.addNode(new Cell(3,2), "#");
         gridGraph.addNode(new Cell(2,4), "#");
         System.out.println(gridGraph.toString());
-        System.out.println(gridGraph.getNeighbours(new Cell(2,4)));
         DungeonProblem dp = new DungeonProblem(gridGraph);
         System.out.println(dp.getShortestPath());
     }
