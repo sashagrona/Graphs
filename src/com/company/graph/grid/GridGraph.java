@@ -4,58 +4,62 @@ import java.util.*;
 
 public class GridGraph<T> {
     private Map<Cell, List<Cell>> graph;
-    private int [] rowsDirections;
-    private int [] columnDirections;
+    private Map<Cell, T> cellsValueMap;
+    private int[] rowsDirections;
+    private int[] columnDirections;
     private int size;
 
     public GridGraph(int size) {
         this.graph = new HashMap<>();
+        this.cellsValueMap = new HashMap<>();
         this.size = size;
         // north, south, west, east
         this.columnDirections = new int[]{-1, 1, 0, 0};
-        this.rowsDirections = new int[]{0,0,-1,1};
+        this.rowsDirections = new int[]{0, 0, -1, 1};
     }
-    public void initGraph(T initValue){
-        for (int i = 0; i< size;i++){
-            for (int j = 0;j<size; j++){
-                addNode(new ExtendedCell<T>(i,j,initValue));
+
+    public void initGraph(T initValue) {
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                addNode(new Cell(i, j), initValue);
             }
         }
     }
 
-    public void addNode(Cell cell){
-        graph.put(cell, cell.getNeighbours());
+    public void addNode(Cell cell, T initValue) {
+        graph.put(cell, getNeighbours(cell));
+        cellsValueMap.put(cell, initValue);
     }
 
-    public Cell<T> getNode(String key){
-
-    }
-
-    public List<Cell> getNeighbours(Cell node) {
-        List<Cell> nodes = graph.get(node);
-
-        for (int i = 0; i<4;i++){
-
+    public List<Cell> getNeighbours(Cell cell) {
+        List<Cell> cells = graph.get(cell);
+        if (cells == null) {
+            cells = new ArrayList<>();
+            for (int i = 0; i<4;i++){
+                int x = cell.getX() + rowsDirections[i];
+                int y = cell.getY() + columnDirections[i];
+                if ((x>=0&&x<size)&&(y>=0&&y<size)){
+                    cells.add(new Cell(x,y));
+                }
+            }
         }
-        graph.put(node, nodes);
-        return graph.get(node);
+        return cells;
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        T [][] arr = (T[][]) new Object[size][size];
+        T[][] arr = (T[][]) new Object[size][size];
         sb.append("Graph: \r\n");
-        for (Cell node: graph.keySet()){
-            int x = node.getX();
-            int y = node.getY();
-            arr[x][y] = (T)node.getValue();
+        for (Cell cell : cellsValueMap.keySet()) {
+            int x = cell.getX();
+            int y = cell.getY();
+            arr[y][x] = cellsValueMap.get(cell);
         }
-        for (int i = 0;i<size;i++){
-           sb.append(Arrays.toString(arr[i]));
-           sb.append("\r\n");
+        for (int i = 0; i < size; i++) {
+            sb.append(Arrays.toString(arr[i]));
+            sb.append("\r\n");
         }
-        System.out.println(graph.size() + "   " + graph.keySet());
         return sb.toString();
     }
 }

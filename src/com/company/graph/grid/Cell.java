@@ -1,6 +1,5 @@
 package com.company.graph.grid;
 
-import java.util.List;
 import java.util.Objects;
 
 public class Cell {
@@ -26,9 +25,6 @@ public class Cell {
 
     public void setY(int y) {
         this.y = y;
-    }
-    public List<Cell> getNeighbours(Cell cell){
-        return null;
     }
 
     @Override
