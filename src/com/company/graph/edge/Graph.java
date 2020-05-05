@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Graph<T> {
     private Map<T, List<Edge<T>>> graph;
@@ -16,12 +17,19 @@ public class Graph<T> {
         if (edges == null){
             edges = new ArrayList<>();
         }
-        edges.add(new Edge<>(from, to, cost));
+        // if the node is single then from equals to
+        if (!from.equals(to)){
+            edges.add(new Edge<>(from, to, cost));
+        }
         graph.put(from, edges);
     }
 
     public List<Edge<T>> getEdges(T from){
         return graph.get(from);
+    }
+
+    public List<T> getNodes(){
+        return new ArrayList<>(graph.keySet());
     }
 
     @Override

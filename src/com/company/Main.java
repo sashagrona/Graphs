@@ -1,23 +1,31 @@
 package com.company;
 
-import com.company.bfs.DungeonProblem;
-import com.company.graph.grid.Cell;
-import com.company.graph.grid.GridGraph;
+import com.company.dfs.TopologicalSort;
+import com.company.graph.edge.Graph;
+
+import java.util.Arrays;
 
 public class Main {
 
     public static void main(String[] args) {
-        GridGraph gridGraph = new GridGraph(5);
-        gridGraph.initGraph(".");
-        gridGraph.addNode(new Cell(1,1),"S");
-        gridGraph.addNode(new Cell(4,0), "E");
-        gridGraph.addNode(new Cell(3,0),"#");
-        gridGraph.addNode(new Cell(0,3), "#");
-        gridGraph.addNode(new Cell(2,2), "#");
-        gridGraph.addNode(new Cell(3,2), "#");
-        gridGraph.addNode(new Cell(2,4), "#");
-        System.out.println(gridGraph.toString());
-        DungeonProblem dp = new DungeonProblem(gridGraph);
-        System.out.println(dp.getShortestPath());
+        Graph<String> graph = new Graph<>();
+        graph.addEdge("0S","1",3);
+        graph.addEdge("0S","2",2);
+        graph.addEdge("0S","5",3);
+        graph.addEdge("1","3D",1);
+        graph.addEdge("1","2",6);
+        graph.addEdge("2","3D",1);
+        graph.addEdge("2","4",10);
+        graph.addEdge("3D","4",5);
+        graph.addEdge("5","4",7);
+        graph.addEdge("4","4",0);
+        graph.addEdge("6","6",0);
+        graph.addEdge("7","5",0);
+        graph.addEdge("3D","7",5);
+
+        System.out.println(graph.toString());
+
+        TopologicalSort<String> topologicalSort = new TopologicalSort<>(graph);
+        System.out.println(Arrays.toString(topologicalSort.topSort()));
     }
 }
