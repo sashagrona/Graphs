@@ -1,5 +1,7 @@
 package com.company.graph.edge;
 
+import java.util.Objects;
+
 public class Edge<T> {
     private T from;
     private T to;
@@ -33,6 +35,21 @@ public class Edge<T> {
 
     public void setCost(int cost) {
         this.cost = cost;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Edge<?> edge = (Edge<?>) o;
+        return cost == edge.cost &&
+                Objects.equals(from, edge.from) &&
+                Objects.equals(to, edge.to);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(from, to, cost);
     }
 
     @Override
