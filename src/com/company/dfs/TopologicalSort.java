@@ -5,8 +5,11 @@ import com.company.graph.edge.Graph;
 
 import java.lang.reflect.Array;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class TopologicalSort<T> {
+    private final Logger logger = Logger.getLogger(this.getClass().getName());
     private Graph<T> graph;
     private Set<T> visited;
     private List<T> nodes;
@@ -48,7 +51,7 @@ public class TopologicalSort<T> {
     }
 
     //only for DAG (directed acyclic graph)
-    public int getShortestPath(T from, T to) {
+    private int getPath(T from, T to, int shortOrLong) {
         if (distances != null) {
             return distances.get(to) - distances.get(from);
         }
@@ -63,13 +66,24 @@ public class TopologicalSort<T> {
                     int newDist = distances.get(t) + edge.getCost();
                     if (distances.get(edgeTo) != null) {
                         int currentDist = distances.get(edgeTo);
-                        distances.put(edgeTo, Math.min(currentDist, newDist));
+                        currentDist = ((newDist - currentDist)*shortOrLong < 0) ? newDist : currentDist;
+                        distances.put(edgeTo, currentDist);
                     } else {
                         distances.put(edgeTo, newDist);
                     }
                 }
             }
         }
-        return getShortestPath(from, to);
+        logger.log(Level.INFO, distances.keySet().toString());
+        logger.log(Level.INFO, distances.values().toString());
+        return getPath(from, to, shortOrLong);
+    }
+
+    public int getShortestPath(T from, T to) {
+        return getPath(from, to, 1);
+    }
+
+    public int getLongestPath(T from, T to) {
+        return getPath(from, to, -1);
     }
 }
