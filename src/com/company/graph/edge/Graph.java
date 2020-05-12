@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class Graph<T> {
     private Map<T, List<Edge<T>>> graph;
@@ -30,6 +29,10 @@ public class Graph<T> {
 
     public List<T> getNodes(){
         return new ArrayList<>(graph.keySet());
+    }
+
+    public int getSize(){
+        return graph.size();
     }
 
     @Override

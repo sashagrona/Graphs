@@ -1,5 +1,7 @@
 package com.company.dijkstra;
 
+import java.util.Objects;
+
 public class Node<T> {
     private T value;
     private int cost;
@@ -23,6 +25,20 @@ public class Node<T> {
 
     public void setCost(int cost) {
         this.cost = cost;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Node<?> node = (Node<?>) o;
+        return cost == node.cost &&
+                Objects.equals(value, node.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value, cost);
     }
 
     @Override
