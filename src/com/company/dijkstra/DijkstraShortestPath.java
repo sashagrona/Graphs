@@ -10,12 +10,25 @@ public class DijkstraShortestPath<T> {
     private Graph<T> graph;
     private Set<T> visited;
     private Map<T, Integer> distances;
+    private Integer[] prev;
 
     public DijkstraShortestPath(Graph<T> graph) {
         this.graph = graph;
         comparator = new NodeComparator<>();
         visited = new HashSet<>();
         distances = new HashMap<>();
+        prev = new Integer[graph.getSize()];
+    }
+
+    public List<Integer> getIntPath(T from, T to) {
+        List<Integer> path = new ArrayList<>();
+        if (getShortestPath(from, to) != -1) {
+            for (Integer i = (Integer) to; i !=null; i = prev[i]){
+                path.add(i);
+            }
+            Collections.reverse(path);
+        }
+        return path;
     }
 
     public int getShortestPath(T from, T to) {
@@ -46,6 +59,9 @@ public class DijkstraShortestPath<T> {
                 } else {
                     distances.put(to, newDist);
                     queue.add(new Node(to, newDist));
+                }
+                if (to instanceof Integer) {
+                    prev[(int) to] = (Integer) edge.getFrom();
                 }
             }
         }
