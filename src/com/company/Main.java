@@ -23,6 +23,6 @@ public class Main {
 
         System.out.println(graph.toString());
         DijkstraShortestPath<Integer> dijkstraShortestPath = new DijkstraShortestPath<>(graph);
-        System.out.println(dijkstraShortestPath.getIntPath(0,1));
+        System.out.println(dijkstraShortestPath.getIntPath(1,4));
     }
 }
