@@ -6,6 +6,7 @@ import com.company.graph.edge.Graph;
 import java.util.Arrays;
 import java.util.List;
 
+//used for single source shortest path for negative and positive weights
 public class BellmanFord {
     private Graph<Integer> graph;
     private int start;

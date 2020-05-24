@@ -23,6 +23,14 @@ public class MatrixGraph {
         matrix[from][to] = cost;
     }
 
+    public int getSize(){
+        return matrix.length;
+    }
+
+    public double getDistance(int from, int to){
+        return matrix[from][to];
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

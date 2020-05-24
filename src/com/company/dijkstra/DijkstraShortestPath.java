@@ -5,6 +5,7 @@ import com.company.graph.edge.Graph;
 
 import java.util.*;
 
+//used for single source shortest path with non negative weights
 public class DijkstraShortestPath<T> {
     private NodeComparator<Node> comparator;
     private Graph<T> graph;
