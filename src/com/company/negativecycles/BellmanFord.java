@@ -1,4 +1,4 @@
-package com.company.bellman;
+package com.company.negativecycles;
 
 import com.company.graph.edge.Edge;
 import com.company.graph.edge.Graph;

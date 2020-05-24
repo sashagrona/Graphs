@@ -1,27 +1,22 @@
 package com.company;
 
-import com.company.bellman.BellmanFord;
-import com.company.dijkstra.DijkstraShortestPath;
-import com.company.graph.edge.Graph;
-
-import java.util.Arrays;
+import com.company.graph.matrix.MatrixGraph;
 
 public class Main {
 
     public static void main(String[] args) {
-        Graph<Integer> graph = new Graph<>();
-        graph.addEdge( 0, 1, 1);
-        graph.addEdge(1, 2, 1);
-        graph.addEdge(2, 4, 1);
-        graph.addEdge(4, 3, -3);
-        graph.addEdge(3, 2, 1);
-        graph.addEdge(1, 5, 4);
-        graph.addEdge(1, 6, 4);
-        graph.addEdge(5, 6, 5);
-        graph.addEdge(6, 7, 4);
-        graph.addEdge(5, 7, 3);
+        MatrixGraph graph = new MatrixGraph(7);
+        graph.addEdge( 0, 1, 2);
+        graph.addEdge(0, 2, 5);
+        graph.addEdge(0, 6, 10);
+        graph.addEdge(1, 2, 2);
+        graph.addEdge(1, 4, 11);
+        graph.addEdge(2, 6, 2);
+        graph.addEdge(6, 5, 11);
+        graph.addEdge(4, 5, 1);
+        graph.addEdge(5, 4, -2);
         System.out.println(graph.toString());
-        BellmanFord bellmanFord = new BellmanFord(graph, 0, 9);
-        System.out.println(Arrays.toString(bellmanFord.getDistances()));
+//        BellmanFord bellmanFord = new BellmanFord(graph, 0, 8);
+//        System.out.println(Arrays.toString(bellmanFord.getDistances()));
     }
 }
