@@ -19,5 +19,6 @@ public class Main {
         System.out.println(graph.toString());
         FloydWarshall floydWarshall = new FloydWarshall(graph);
         System.out.println(floydWarshall.toString());
+        System.out.println(floydWarshall.reconstructPath(0,6));
     }
 }

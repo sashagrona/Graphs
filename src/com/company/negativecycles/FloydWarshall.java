@@ -2,12 +2,15 @@ package com.company.negativecycles;
 
 import com.company.graph.matrix.MatrixGraph;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 //user for all-pair shortest path with negative and positive weights
 public class FloydWarshall {
     private MatrixGraph graph;
     private double [][] distances;
+    private int [][] next;
     private boolean isSolved;
 
     public FloydWarshall(MatrixGraph graph) {
@@ -15,6 +18,7 @@ public class FloydWarshall {
         this.isSolved = false;
         int size = graph.getSize();
         this.distances = new double[size][size];
+        this.next = new int[size][size];
         init();
     }
 
@@ -22,6 +26,7 @@ public class FloydWarshall {
         for (int i = 0;i<distances.length;i++){
             for (int j =0;j< distances.length;j++){
                 distances[i][j] = graph.getDistance(i,j);
+                next[i][j] = j;
             }
         }
     }
@@ -45,13 +50,38 @@ public class FloydWarshall {
                     if (distances[j][k] > distances[j][i] + distances[i][k]){
                         if (isInfiniteSerach){
                             distances[j][k] = Double.NEGATIVE_INFINITY;
+                            next[j][k] = -1;
                         }else {
                             distances[j][k] = distances[j][i] + distances[i][k];
+                            next[j][k] = next[j][i];
                         }
                     }
                 }
             }
         }
+    }
+
+    public List<Integer> reconstructPath(int start, int end){
+        if (!isSolved){
+            solve();
+        }
+        if (distances[start][end] == Double.POSITIVE_INFINITY){
+            return null;
+        }
+        List<Integer> path = new ArrayList<>();
+        int i = start;
+        for (; i != end; i = next[i][end]){
+            if (i == -1){
+                return null;
+            }
+            path.add(i);
+        }
+        path.add(end);
+        if (next[i][end] == -1) {
+            return null;
+        }
+        return path;
+
     }
 
     @Override
