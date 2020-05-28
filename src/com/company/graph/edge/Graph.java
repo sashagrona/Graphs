@@ -23,6 +23,10 @@ public class Graph<T> {
         graph.put(from, edges);
     }
 
+    public Map<T, List<Edge<T>>> getGraph() {
+        return graph;
+    }
+
     public List<Edge<T>> getEdges(T from){
         return graph.get(from);
     }
