@@ -1,5 +1,6 @@
 package com.company;
 
+import com.company.dfs.BridgesSearcher;
 import com.company.graph.edge.UndirectedGraph;
 import com.company.graph.matrix.MatrixGraph;
 import com.company.negativecycles.FloydWarshall;
@@ -19,5 +20,7 @@ public class Main {
         graph.addEdge(5, 6, 0);
         graph.addEdge(8, 5, 0);
         System.out.println(graph.toString());
+        BridgesSearcher bridgesSearcher = new BridgesSearcher(graph);
+        System.out.println(bridgesSearcher);
     }
 }
