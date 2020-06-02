@@ -27,7 +27,7 @@ public class DepthFirstSearch<T> {
 
     public int getCount() {
         List<Edge<T>> edges = graph.getEdges(start);
-        if (edges != null ) {
+        if (edges != null) {
             for (Edge<T> edge : edges) {
                 if (!visited.contains(edge.getTo())) {
                     start = edge.getTo();

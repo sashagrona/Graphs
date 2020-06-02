@@ -10,7 +10,7 @@ import java.util.List;
 public class BellmanFord {
     private Graph<Integer> graph;
     private int start;
-    private double [] distances;
+    private double[] distances;
 
     public BellmanFord(Graph<Integer> graph, int start, int vertices) {
         this.graph = graph;
@@ -18,7 +18,7 @@ public class BellmanFord {
         this.distances = new double[vertices];
     }
 
-    public double[] getDistances(){
+    public double[] getDistances() {
         Arrays.fill(distances, Double.POSITIVE_INFINITY);
         distances[start] = 0;
         commonOperations(false);
@@ -27,13 +27,13 @@ public class BellmanFord {
         return distances;
     }
 
-    private void commonOperations(boolean isInfiniteSearch){
-        for (int i=0;i<distances.length-1;i++){
-            for (int j = 0;j<graph.getSize();j++){
+    private void commonOperations(boolean isInfiniteSearch) {
+        for (int i = 0; i < distances.length - 1; i++) {
+            for (int j = 0; j < graph.getSize(); j++) {
                 List<Edge<Integer>> edges = graph.getEdges(j);
-                for (Edge edge : edges){
-                    if(distances[(int) edge.getFrom()] + edge.getCost() < distances[(int) edge.getTo()]){
-                        distances[(int) edge.getTo()] = (!isInfiniteSearch) ? distances[(int)edge.getFrom()] + edge.getCost() : Double.NEGATIVE_INFINITY;
+                for (Edge edge : edges) {
+                    if (distances[(int) edge.getFrom()] + edge.getCost() < distances[(int) edge.getTo()]) {
+                        distances[(int) edge.getTo()] = (!isInfiniteSearch) ? distances[(int) edge.getFrom()] + edge.getCost() : Double.NEGATIVE_INFINITY;
                     }
                 }
             }

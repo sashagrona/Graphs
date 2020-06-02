@@ -3,7 +3,6 @@ package com.company.dfs;
 import com.company.graph.edge.Edge;
 import com.company.graph.edge.Graph;
 
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -66,7 +65,7 @@ public class TopologicalSort<T> {
                     int newDist = distances.get(t) + edge.getCost();
                     if (distances.get(edgeTo) != null) {
                         int currentDist = distances.get(edgeTo);
-                        currentDist = ((newDist - currentDist)*shortOrLong < 0) ? newDist : currentDist;
+                        currentDist = ((newDist - currentDist) * shortOrLong < 0) ? newDist : currentDist;
                         distances.put(edgeTo, currentDist);
                     } else {
                         distances.put(edgeTo, newDist);

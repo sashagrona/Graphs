@@ -21,19 +21,19 @@ public class DungeonProblem {
         this.moves = 0;
     }
 
-    public int getShortestPath(){
+    public int getShortestPath() {
         Cell initialCell = graph.getSellByUniqueValue(START);
         queue.add(initialCell);
         visited.add(initialCell);
         return bfs();
     }
 
-    private int bfs(){
+    private int bfs() {
         int layer = 1;
         int temp = 0;
-        while (!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             moves++;
-            while (layer>0) {
+            while (layer > 0) {
                 Cell cell = queue.poll();
                 List<Cell> neighbours = graph.getNeighbours(cell);
                 for (Cell c : neighbours) {
@@ -48,7 +48,7 @@ public class DungeonProblem {
                     }
                 }
                 layer--;
-                if (layer==0){
+                if (layer == 0) {
                     temp = queue.size();
                 }
             }

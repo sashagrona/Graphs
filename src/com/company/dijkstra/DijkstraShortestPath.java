@@ -24,7 +24,7 @@ public class DijkstraShortestPath<T> {
     public List<Integer> getIntPath(T from, T to) {
         List<Integer> path = new ArrayList<>();
         if (getShortestPath(from, to) != -1) {
-            for (Integer i = (Integer) to; i !=null; i = prev[i]){
+            for (Integer i = (Integer) to; i != null; i = prev[i]) {
                 path.add(i);
             }
             Collections.reverse(path);

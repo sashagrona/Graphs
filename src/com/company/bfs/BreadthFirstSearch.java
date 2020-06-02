@@ -24,7 +24,7 @@ public class BreadthFirstSearch<T> {
         if (!queue.isEmpty()) {
             T node = queue.poll();
             List<Edge<T>> edges = graph.getEdges(node);
-            if (edges!=null) {
+            if (edges != null) {
                 for (Edge<T> edge : edges) {
                     if (!visited.contains(edge.getTo())) {
                         visited.add(edge.getTo());
@@ -33,7 +33,7 @@ public class BreadthFirstSearch<T> {
                     }
                 }
             }
-        }else {
+        } else {
             return count;
         }
         return getCount();
