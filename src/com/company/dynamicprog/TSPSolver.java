@@ -4,6 +4,7 @@ import com.company.graph.matrix.MatrixGraph;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 //used to solve np-complete Travelling Salesman Problem (shortest tour path between all nodes)
@@ -12,11 +13,15 @@ public class TSPSolver {
     private int start;
     private MatrixGraph graph;
     private double[][] memotable;
+    private double minCost;
+    private boolean isSolved;
 
     public TSPSolver(int start, MatrixGraph graph) {
         this.start = start;
         this.graph = graph;
+        this.minCost = Double.POSITIVE_INFINITY;
         this.size = graph.getSize();
+        this.isSolved = false;
         this.memotable = new double[size][1 << size];
         if (size > 32)
             throw new IllegalArgumentException("The complexity of algorithm is O(n^2 * 2^n). Input is too large");
@@ -50,16 +55,61 @@ public class TSPSolver {
                 }
             }
         }
+        isSolved = true;
+    }
+
+    public void setMinCost(){
+        if (!isSolved){
+            tsp();
+        }
+        int end = (1<<size) -1;
+        for (int i = 0;i< size;i++){
+            if (i == start) continue;
+            double cost = memotable[i][end] + graph.getDistance(i, start);
+            if (cost < minCost){
+                minCost = cost;
+            }
+        }
+    }
+
+    public List<Integer> getTour(){
+        if (!isSolved){
+            tsp();
+        }
+        List<Integer> tour = new ArrayList<>();
+        tour.add(start);
+        int lastIndex = start;
+        int state = (1<<size) -1;
+        for (int i =1;i< size;i++){
+            int index = -1;
+            for (int j = 0;j< size;j++){
+                if (j == start || notInSubset(j, state)) continue;
+                if (index == -1){
+                    index = j;
+                }
+                double prevDistance = memotable[index][state] + graph.getDistance(index, lastIndex);
+                double currentDistance = memotable[j][state] + graph.getDistance(j, lastIndex);
+                if (currentDistance < prevDistance){
+                    index = j;
+                }
+            }
+            tour.add(index);
+            state ^= (1<<index);
+            lastIndex = index;
+        }
+        tour.add(start);
+        Collections.reverse(tour);
+        return tour;
     }
 
     private boolean notInSubset(int el, int subset) {
         return ((1 << el) & subset) == 0;
     }
 
+    //{1110, 1011, 1101, 0111} 1 -> the node is already visited, 0 -> not yet
     public List<Integer> getCombinations(int fillSize) {
         List<Integer> combinations = new ArrayList<>();
         setCombinations(0, 0, fillSize, combinations);
-        System.out.println(combinations);
         return combinations;
     }
 

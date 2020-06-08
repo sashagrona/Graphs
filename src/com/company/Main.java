@@ -12,11 +12,10 @@ public class Main {
         graph.addEdge(2, 4, 4);
         graph.addEdge(4, 1, 2);
         graph.addEdge(1, 5, 12);
-        graph.addEdge(5, 1, 10);
+        graph.addEdge(5, 0, 10);
 
         System.out.println(graph.toString());
         TSPSolver tspSolver = new TSPSolver(0, graph);
-        System.out.println(tspSolver);
-        tspSolver.getCombinations(3);
+        System.out.println(tspSolver.getTour());
     }
 }
