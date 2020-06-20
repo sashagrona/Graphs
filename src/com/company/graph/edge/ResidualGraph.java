@@ -2,6 +2,7 @@ package com.company.graph.edge;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class ResidualGraph<T> extends Graph<T> {
@@ -11,8 +12,8 @@ public class ResidualGraph<T> extends Graph<T> {
 
     @Override
     public void addEdge(T from, T to, int capacity) {
-        EdgeFlow direct = new EdgeFlow(from, to, capacity);
-        EdgeFlow residual = new EdgeFlow(to, from,0);
+        Edge direct = new Edge(from, to, capacity);
+        Edge residual = new Edge(to, from,0);
         direct.setResidual(residual);
         residual.setResidual(direct);
         List<Edge<T>> edgesFrom = Optional.ofNullable(getEdges(from)).orElse(new ArrayList<>());
@@ -22,4 +23,5 @@ public class ResidualGraph<T> extends Graph<T> {
         getGraph().put(from, edgesFrom);
         getGraph().put(to, edgesTo);
     }
+
 }

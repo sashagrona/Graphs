@@ -6,11 +6,44 @@ public class Edge<T> {
     private T from;
     private T to;
     private int cost;
+    private Edge residual;
+    private long flow;
+    private long capacity;
 
     public Edge(T from, T to, int cost) {
         this.from = from;
         this.to = to;
         this.cost = cost;
+        this.capacity = cost;
+    }
+
+    public boolean isResidual() {
+        return this.capacity == 0;
+    }
+
+    public long getRemainingCapacity() {
+        return this.capacity - this.flow;
+    }
+
+    public void augment(long bottleNeck) {
+        flow += bottleNeck;
+        this.residual.flow -= bottleNeck;
+    }
+
+    public Edge getResidual() {
+        return residual;
+    }
+
+    public void setResidual(Edge residual) {
+        this.residual = residual;
+    }
+
+    public long getFlow() {
+        return flow;
+    }
+
+    public void setFlow(long flow) {
+        this.flow = flow;
     }
 
     public T getFrom() {

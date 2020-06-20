@@ -1,6 +1,7 @@
 package com.company;
 
 import com.company.dfs.EulerianPath;
+import com.company.dfs.FordFulkerson;
 import com.company.dynamicprog.TSPSolver;
 import com.company.graph.edge.Graph;
 import com.company.graph.edge.ResidualGraph;
@@ -34,5 +35,7 @@ public class Main {
         graph.addEdge(8, t, 4);
 
         System.out.println(graph.toString());
+        FordFulkerson fordFulkerson = new FordFulkerson(graph, s, t);
+        System.out.println(fordFulkerson);
     }
 }
