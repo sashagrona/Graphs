@@ -1,5 +1,6 @@
 package com.company;
 
+import com.company.networkflow.EdmondsKarp;
 import com.company.networkflow.FordFulkerson;
 import com.company.graph.edge.ResidualGraph;
 import com.company.networkflow.NetworkFlow;
@@ -9,9 +10,9 @@ public class Main {
     public static void main(String[] args) {
         ResidualGraph<Integer> graph = new ResidualGraph<Integer>();
         //source
-        int s = 10;
+        int s = 9;
         //sink
-        int t = 11;
+        int t = 10;
         graph.addEdge(s, 0, 7);
         graph.addEdge(s, 1, 2);
         graph.addEdge(s, 2, 1);
@@ -31,7 +32,7 @@ public class Main {
         graph.addEdge(8, t, 4);
 
         System.out.println(graph.toString());
-        NetworkFlow fordFulkerson = new FordFulkerson(graph, s, t);
-        System.out.println(fordFulkerson.getMaxFlow());
+        EdmondsKarp edmondsKarp = new EdmondsKarp(graph, s, t);
+        System.out.println(edmondsKarp.getMaxFlow());
     }
 }
