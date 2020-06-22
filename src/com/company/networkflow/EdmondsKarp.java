@@ -23,7 +23,7 @@ public class EdmondsKarp extends NetworkFlow{
             bottleNeck = bfs();
             visited.clear();
             maxFlow += bottleNeck;
-        }while (bottleNeck != 0);
+        } while (bottleNeck != 0);
     }
 
     private long bfs(){

@@ -1,5 +1,6 @@
 package com.company;
 
+import com.company.networkflow.CapacityScaling;
 import com.company.networkflow.EdmondsKarp;
 import com.company.networkflow.FordFulkerson;
 import com.company.graph.edge.ResidualGraph;
@@ -32,7 +33,7 @@ public class Main {
         graph.addEdge(8, t, 4);
 
         System.out.println(graph.toString());
-        EdmondsKarp edmondsKarp = new EdmondsKarp(graph, s, t);
-        System.out.println(edmondsKarp.getMaxFlow());
+        NetworkFlow capacityScaling = new CapacityScaling(graph, s, t);
+        System.out.println(capacityScaling);
     }
 }
