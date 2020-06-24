@@ -32,6 +32,6 @@ public class Main {
 
         System.out.println(graph.toString());
         NetworkFlow dinics = new Dinics(graph, s, t);
-        System.out.println(dinics.getMaxFlow());
+        System.out.println(dinics);
     }
 }

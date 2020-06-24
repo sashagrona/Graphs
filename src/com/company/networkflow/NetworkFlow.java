@@ -35,7 +35,7 @@ public abstract class NetworkFlow {
     @Override
     public String toString() {
         if (!isSolved) {
-//            solve();
+            solve();
         }
         StringBuilder sb = new StringBuilder();
         for (Integer node : graph.getNodes()) {
