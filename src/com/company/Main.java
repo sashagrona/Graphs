@@ -1,10 +1,7 @@
 package com.company;
 
-import com.company.networkflow.CapacityScaling;
-import com.company.networkflow.EdmondsKarp;
-import com.company.networkflow.FordFulkerson;
+import com.company.networkflow.*;
 import com.company.graph.edge.ResidualGraph;
-import com.company.networkflow.NetworkFlow;
 
 public class Main {
 
@@ -14,26 +11,27 @@ public class Main {
         int s = 9;
         //sink
         int t = 10;
-        graph.addEdge(s, 0, 7);
-        graph.addEdge(s, 1, 2);
-        graph.addEdge(s, 2, 1);
-        graph.addEdge(0, 4, 4);
-        graph.addEdge(0, 3, 2);
-        graph.addEdge(1, 4, 5);
-        graph.addEdge(1, 5, 6);
-        graph.addEdge(2, 3, 4);
-        graph.addEdge(2, 7, 8);
-        graph.addEdge(3, 6, 7);
-        graph.addEdge(3, 7, 1);
-        graph.addEdge(4, 5, 8);
-        graph.addEdge(4, 8, 3);
-        graph.addEdge(5, 8, 3);
-        graph.addEdge(6, t, 1);
-        graph.addEdge(7, t, 3);
-        graph.addEdge(8, t, 4);
+        graph.addEdge(s, 0, 5);
+        graph.addEdge(s, 1, 10);
+        graph.addEdge(s, 2, 15);
+        graph.addEdge(0, 3, 10);
+        graph.addEdge(1, 0, 15);
+        graph.addEdge(1, 4, 20);
+        graph.addEdge(2, 5, 25);
+        graph.addEdge(3, 4, 25);
+        graph.addEdge(3, 6, 10);
+        graph.addEdge(3, 7, 20);
+        graph.addEdge(4, 2, 5);
+        graph.addEdge(4, 7, 30);
+        graph.addEdge(5, 7, 20);
+        graph.addEdge(5, 8, 10);
+        graph.addEdge(7, 8, 15);
+        graph.addEdge(6, t, 5);
+        graph.addEdge(7, t, 15);
+        graph.addEdge(8, t, 10);
 
         System.out.println(graph.toString());
-        NetworkFlow capacityScaling = new CapacityScaling(graph, s, t);
-        System.out.println(capacityScaling);
+        NetworkFlow dinics = new Dinics(graph, s, t);
+        System.out.println(dinics.getMaxFlow());
     }
 }

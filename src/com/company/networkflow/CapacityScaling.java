@@ -3,6 +3,7 @@ package com.company.networkflow;
 import com.company.graph.edge.Edge;
 import com.company.graph.edge.ResidualGraph;
 
+//optimization of max flow algorithm, O(E^2log(U))
 public class CapacityScaling extends NetworkFlow {
 
     private int delta;
